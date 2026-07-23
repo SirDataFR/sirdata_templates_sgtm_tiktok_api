@@ -14,7 +14,6 @@
 
 homepage: "https://sgtm.sirdata.io"
 documentation: "https://server-side.docs.sirdata.net/sirdata-server-side/v/english-1/installation"
-# Add the commit sha of the first release below once pushed, e.g.:
-# versions:
-#   - sha: <commit sha>
-#     changeNotes: initial GDPR Ready release
+versions:
+  - sha: 695d6ccd20ecef9af9fe5ff83b8f475533055267
+    changeNotes: init
