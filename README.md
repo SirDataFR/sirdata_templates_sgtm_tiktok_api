@@ -2,7 +2,7 @@
 
 You can use this tag in the Google Tag Manager Server-Side container to configure the TikTok Events API and manage cookies, data transmission, and identifiers with built-in consent controls.
 
-The tag operates based on GA4 requests and supports custom settings and parameters. It is based on the excellent [TikTok Events API tag by Stape](https://github.com/stape-io/tiktok-tag), adapted by Sirdata to be GDPR Ready.
+The tag operates based on GA4 requests and supports custom settings and parameters.
 
 The TikTok Events API serves the same purpose as the TikTok Pixel, tracking user interactions on your website. However, while the Pixel processes requests in the user's browser, the Events API operates through a cloud server, enabling various optimizations such as bypassing ad blockers.
 

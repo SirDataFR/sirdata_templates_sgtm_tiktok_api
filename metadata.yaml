@@ -17,4 +17,4 @@ documentation: "https://server-side.docs.sirdata.net/sirdata-server-side/v/engli
 # Add the commit sha of the first release below once pushed, e.g.:
 # versions:
 #   - sha: <commit sha>
-#     changeNotes: initial GDPR Ready release based on stape-io/tiktok-tag
+#     changeNotes: initial GDPR Ready release

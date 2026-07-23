@@ -2183,4 +2183,4 @@ setup: ''
 
 ___NOTES___
 
-Created on 23/07/2026. Based on the TikTok Events API tag by Stape (stape-io/tiktok-tag, Apache 2.0), adapted by Sirdata to be GDPR Ready with built-in consent controls and Sirdata GTM Helper enrichment.
+Created on 23/07/2026. GDPR Ready TikTok Events API tag by Sirdata, with built-in consent controls and Sirdata GTM Helper enrichment.
