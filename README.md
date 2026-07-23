@@ -6,6 +6,7 @@ The tag operates based on GA4 requests and supports custom settings and paramete
 
 The TikTok Events API serves the same purpose as the TikTok Pixel, tracking user interactions on your website. However, while the Pixel processes requests in the user's browser, the Events API operates through a cloud server, enabling various optimizations such as bypassing ad blockers.
 
+This tag works with any container hosting service (Google Cloud, Stape, Sirdata, Taggrs), and is optimized for Sirdata's data enrichment layer, which is compatible with all hosting platforms. This additional layer of data enables several enhancements, including:
 - Utilizing TCF consent signals in addition to Consent Mode signals
 - Supporting a cookieless user ID when consent is not provided
 - Handling consent under GDPR where applicable, and adjusting behavior where GDPR does not apply.
