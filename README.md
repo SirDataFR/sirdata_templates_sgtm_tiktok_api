@@ -18,4 +18,8 @@ This tag works with any container hosting service (Google Cloud, Sirdata, and ot
 - Personal data (email, phone, name, address, stored user agent) is only forwarded when consent is given.
 - An experimental mode allows sending Events API data without consent using Sirdata's site-only cookieless user ID (no cookie is read or written, and no personal data is forwarded).
 
+## Matching your TikTok catalog
+
+When the GA4 `item_id` differs from the SKU ID of your TikTok catalog, enable **Rewrite content_id** (Properties section, GA4 e-commerce data) to align them: add a prefix and replace characters. For example, `437-1604` with prefix `FR` and `-` replaced by `v` becomes `FR437v1604`.
+
 👉 For [Sirdata](https://sgtm.sirdata.io/login) clients, **many additional automatic optimizations are available**, such as integrated third-party ID management, enhanced consent handling, and advanced data enrichment. These features significantly improve TikTok's Event Match Quality score, boosting campaign efficiency and tracking precision.

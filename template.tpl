@@ -387,6 +387,64 @@ ___TEMPLATE_PARAMETERS___
             "defaultValue": "ga"
           },
           {
+            "type": "CHECKBOX",
+            "name": "rewriteContentId",
+            "checkboxText": "Rewrite content_id to match the product IDs of your TikTok catalog",
+            "simpleValueType": true,
+            "help": "Use this when the GA4 item_id differs from the SKU ID of your TikTok catalog. Example: item_id \"437-1604\" with prefix \"FR\", replace \"-\" with \"v\" gives \"FR437v1604\".",
+            "defaultValue": false,
+            "enablingConditions": [
+              {
+                "paramName": "object_property_source",
+                "paramValue": "ga",
+                "type": "EQUALS"
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "contentIdPrefix",
+            "displayName": "content_id prefix",
+            "simpleValueType": true,
+            "valueHint": "FR",
+            "enablingConditions": [
+              {
+                "paramName": "rewriteContentId",
+                "paramValue": true,
+                "type": "EQUALS"
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "contentIdSearch",
+            "displayName": "Replace (in item_id)",
+            "simpleValueType": true,
+            "valueHint": "-",
+            "enablingConditions": [
+              {
+                "paramName": "rewriteContentId",
+                "paramValue": true,
+                "type": "EQUALS"
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "contentIdReplace",
+            "displayName": "With",
+            "simpleValueType": true,
+            "valueHint": "v",
+            "help": "Leave empty to remove the searched characters.",
+            "enablingConditions": [
+              {
+                "paramName": "rewriteContentId",
+                "paramValue": true,
+                "type": "EQUALS"
+              }
+            ]
+          },
+          {
             "type": "RADIO",
             "name": "single_multi_product",
             "displayName": "Custom Data Settings",
@@ -745,6 +803,7 @@ const decodeUriComponent = require("decodeUriComponent");
 const getCookieValues = require("getCookieValues");
 const setCookie = require("setCookie");
 const makeNumber = require("makeNumber");
+const makeString = require("makeString");
 const generateRandom = require("generateRandom");
 const getContainerVersion = require('getContainerVersion');
 const getRequestHeader = require('getRequestHeader');
@@ -949,6 +1008,17 @@ function getTtp() {
   return undefined;
 }
 
+// Aligns the GA4 item_id with the product IDs of the TikTok catalog
+// (e.g. "437-1604" -> "FR437v1604").
+function formatContentId(itemId) {
+  if (!data.rewriteContentId) return itemId;
+  let contentId = makeString(itemId);
+  if (data.contentIdSearch) {
+    contentId = contentId.split(data.contentIdSearch).join(data.contentIdReplace || '');
+  }
+  return (data.contentIdPrefix || '') + contentId;
+}
+
 function makeGAContent(item) {
   const price = makeNumber(item.price);
   const quantity = makeNumber(item.quantity || 1);
@@ -957,7 +1027,7 @@ function makeGAContent(item) {
   const content = {};
   content.content_type = eventData.tt_content_type || 'product';
 
-  if (item.item_id) content.content_id = item.item_id;
+  if (item.item_id) content.content_id = formatContentId(item.item_id);
   if (item.item_name) content.content_name = item.item_name;
   if (price) content.price = price;
   if (quantity) content.quantity = quantity;
